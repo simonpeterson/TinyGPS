@@ -222,7 +222,7 @@ public:
   TinyGPSPlus();
   bool encode(char c); // process one character received from GPS
   TinyGPSPlus &operator << (char c) {encode(c); return *this;}
-
+  bool Fix;
   TinyGPSLocation location;
   TinyGPSDate date;
   TinyGPSTime time;

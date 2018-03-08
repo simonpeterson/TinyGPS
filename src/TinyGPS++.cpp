@@ -45,6 +45,7 @@ TinyGPSPlus::TinyGPSPlus()
   ,  sentencesWithFixCount(0)
   ,  failedChecksumCount(0)
   ,  passedChecksumCount(0)
+  ,  Fix(false)
 {
   term[0] = '\0';
 }
@@ -340,6 +341,7 @@ void TinyGPSLocation::commit()
    rawLngData = rawNewLngData;
    lastCommitTime = millis();
    valid = updated = true;
+   Fix = sentenceHasFix;
 }
 
 void TinyGPSLocation::setLatitude(const char *term)
