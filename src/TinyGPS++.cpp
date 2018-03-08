@@ -234,6 +234,7 @@ bool TinyGPSPlus::endOfTermHandler()
       break;
     case COMBINE(GPS_SENTENCE_GPRMC, 2): // GPRMC validity
       sentenceHasFix = term[0] == 'A';
+	  Fix = sentenceHasFix;
       break;
     case COMBINE(GPS_SENTENCE_GPRMC, 3): // Latitude
     case COMBINE(GPS_SENTENCE_GPGGA, 2):
@@ -262,6 +263,7 @@ bool TinyGPSPlus::endOfTermHandler()
       break;
     case COMBINE(GPS_SENTENCE_GPGGA, 6): // Fix data (GPGGA)
       sentenceHasFix = term[0] > '0';
+	  Fix = sentenceHasFix;
       break;
     case COMBINE(GPS_SENTENCE_GPGGA, 7): // Satellites used (GPGGA)
       satellites.set(term);
@@ -341,7 +343,6 @@ void TinyGPSLocation::commit()
    rawLngData = rawNewLngData;
    lastCommitTime = millis();
    valid = updated = true;
-   Fix = sentenceHasFix;
 }
 
 void TinyGPSLocation::setLatitude(const char *term)
